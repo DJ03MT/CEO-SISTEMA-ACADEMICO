@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Profesor - Sistema CEO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="/styles/agregarprofesor.css">
+  <style>
+   
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2><i class="fas fa-chalkboard-teacher"></i> Agregar Nuevo Profesor</h2>
+
+    <div class="info-centro">
+      <p><strong>Código del Centro:</strong> 21824</p>
+      <p><strong>Dirección del Centro:</strong> Terminal de Ruta 108-109, 2C al Este</p>
+      <p><strong>Área:</strong> Rural</p>
+      <p><strong>Municipio:</strong> Managua, D-5</p>
+      <p><strong>No. Alumnos:</strong> 1,339</p>
+    </div>
+
+    <form id="formAgregarProfesor" action="/profesores/agregar" method="POST">
+      <!-- Sección: Información Personal -->
+      <div class="form-section">
+        <h3 class="section-title"><i class="fas fa-user-tie"></i> Información Personal</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cedula" class="required"><i class="fas fa-id-card"></i> Cédula de Identidad</label>
+            <input type="text" id="cedula" name="cedula" placeholder="Ej: 001-031105-1038W" required>
+            <small class="help-text">Formato: 000-000000-0000X</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="primer_nombre" class="required"><i class="fas fa-signature"></i> Primer Nombre</label>
+            <input type="text" id="primer_nombre" name="primer_nombre" placeholder="Primer nombre" required>
+          </div>
+
+          <div class="form-group">
+            <label for="segundo_nombre"><i class="fas fa-signature"></i> Segundo Nombre</label>
+            <input type="text" id="segundo_nombre" name="segundo_nombre" placeholder="Segundo nombre (opcional)">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="primer_apellido" class="required"><i class="fas fa-signature"></i> Primer Apellido</label>
+            <input type="text" id="primer_apellido" name="primer_apellido" placeholder="Primer apellido" required>
+          </div>
+
+          <div class="form-group">
+            <label for="segundo_apellido"><i class="fas fa-signature"></i> Segundo Apellido</label>
+            <input type="text" id="segundo_apellido" name="segundo_apellido" placeholder="Segundo apellido (opcional)">
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección: Información Profesional -->
+      <div class="form-section">
+        <h3 class="section-title"><i class="fas fa-briefcase"></i> Información Profesional</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cargo" class="required"><i class="fas fa-user-tag"></i> Cargo Real</label>
+            <select id="cargo" name="cargo" required>
+              <option value="">Seleccione...</option>
+              <option value="MAESTRO_PREESCOLAR">Maestro de Educación Preescolar</option>
+              <option value="MAESTRO_PRIMARIA">Maestro de Educación Primaria</option>
+              <option value="MAESTRO_SECUNDARIA">Maestro de Educación Media - Secundaria</option>
+              <option value="JEFE_AREA">Jefe de Área A</option>
+              <option value="SUB_DIRECTOR">Sub Director A</option>
+              <option value="DIRECTOR">Director A</option>
+              <option value="COORDINADOR">Coordinador Académico</option>
+              <option value="ORIENTADOR">Orientador Educativo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="especialidad" class="required"><i class="fas fa-graduation-cap"></i> Especialidad del
+              Docente</label>
+            <input type="text" id="especialidad" name="especialidad" placeholder="Ej: Matemáticas, Lengua, Ciencias..."
+              required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="carga" class="required"><i class="fas fa-clock"></i> Carga Horaria (horas semanales)</label>
+            <input type="number" id="carga" name="carga" min="1" max="48" placeholder="Ej: 30" required>
+          </div>
+
+          <div class="form-group">
+            <label for="estudiantes"><i class="fas fa-users"></i> Nº de Estudiantes</label>
+            <input type="number" id="estudiantes" name="estudiantes" min="1" placeholder="Número total de estudiantes">
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección: Grados y Secciones Asignadas -->
+      <div class="form-section">
+        <h3 class="section-title"><i class="fas fa-layer-group"></i> Grados y Secciones Asignadas</h3>
+
+        <div class="form-group">
+          <label><i class="fas fa-users-class"></i> Seleccionar Clases</label>
+
+          <div class="seccion-title">Preescolar</div>
+          <div class="clases-container">
+            <input type="checkbox" id="preescolar" name="clases[]" value="PREESCOLAR" class="clase-checkbox">
+            <label for="preescolar" class="clase-label">Preescolar</label>
+          </div>
+
+          <div class="seccion-title">Primaria (1° - 6° Grado)</div>
+          <div class="clases-container">
+            <input type="checkbox" id="1A" name="clases[]" value="1A" class="clase-checkbox">
+            <label for="1A" class="clase-label">1°A</label>
+
+            <input type="checkbox" id="1B" name="clases[]" value="1B" class="clase-checkbox">
+            <label for="1B" class="clase-label">1°B</label>
+
+            <input type="checkbox" id="2A" name="clases[]" value="2A" class="clase-checkbox">
+            <label for="2A" class="clase-label">2°A</label>
+
+            <input type="checkbox" id="2B" name="clases[]" value="2B" class="clase-checkbox">
+            <label for="2B" class="clase-label">2°B</label>
+
+            <input type="checkbox" id="3A" name="clases[]" value="3A" class="clase-checkbox">
+            <label for="3A" class="clase-label">3°A</label>
+
+            <input type="checkbox" id="3B" name="clases[]" value="3B" class="clase-checkbox">
+            <label for="3B" class="clase-label">3°B</label>
+
+            <input type="checkbox" id="4A" name="clases[]" value="4A" class="clase-checkbox">
+            <label for="4A" class="clase-label">4°A</label>
+
+            <input type="checkbox" id="4B" name="clases[]" value="4B" class="clase-checkbox">
+            <label for="4B" class="clase-label">4°B</label>
+
+            <input type="checkbox" id="5A" name="clases[]" value="5A" class="clase-checkbox">
+            <label for="5A" class="clase-label">5°A</label>
+
+            <input type="checkbox" id="5B" name="clases[]" value="5B" class="clase-checkbox">
+            <label for="5B" class="clase-label">5°B</label>
+
+            <input type="checkbox" id="6A" name="clases[]" value="6A" class="clase-checkbox">
+            <label for="6A" class="clase-label">6°A</label>
+
+            <input type="checkbox" id="6B" name="clases[]" value="6B" class="clase-checkbox">
+            <label for="6B" class="clase-label">6°B</label>
+          </div>
+
+          <div class="seccion-title">Secundaria (7° - 11° Grado)</div>
+          <div class="clases-container">
+            <input type="checkbox" id="7A" name="clases[]" value="7A" class="clase-checkbox">
+            <label for="7A" class="clase-label">7°A</label>
+
+            <input type="checkbox" id="7B" name="clases[]" value="7B" class="clase-checkbox">
+            <label for="7B" class="clase-label">7°B</label>
+
+            <input type="checkbox" id="8A" name="clases[]" value="8A" class="clase-checkbox">
+            <label for="8A" class="clase-label">8°A</label>
+
+            <input type="checkbox" id="8B" name="clases[]" value="8B" class="clase-checkbox">
+            <label for="8B" class="clase-label">8°B</label>
+
+            <input type="checkbox" id="9A" name="clases[]" value="9A" class="clase-checkbox">
+            <label for="9A" class="clase-label">9°A</label>
+
+            <input type="checkbox" id="9B" name="clases[]" value="9B" class="clase-checkbox">
+            <label for="9B" class="clase-label">9°B</label>
+
+            <input type="checkbox" id="10A" name="clases[]" value="10A" class="clase-checkbox">
+            <label for="10A" class="clase-label">10°A</label>
+
+            <input type="checkbox" id="10B" name="clases[]" value="10B" class="clase-checkbox">
+            <label for="10B" class="clase-label">10°B</label>
+
+            <input type="checkbox" id="11A" name="clases[]" value="11A" class="clase-checkbox">
+            <label for="11A" class="clase-label">11°A</label>
+
+            <input type="checkbox" id="11B" name="clases[]" value="11B" class="clase-checkbox">
+            <label for="11B" class="clase-label">11°B</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección: Asignaturas -->
+      <div class="form-section">
+        <h3 class="section-title"><i class="fas fa-book-open"></i> Asignaturas a Impartir</h3>
+
+        <div class="form-group">
+          <label class="required"><i class="fas fa-book"></i> Seleccionar Asignaturas</label>
+
+          <div class="seccion-title">Asignaturas Básicas</div>
+          <div class="clases-container">
+            <input type="checkbox" id="matematicas" name="asignaturas[]" value="MATEMATICAS" class="clase-checkbox">
+            <label for="matematicas" class="clase-label">Matemáticas</label>
+
+            <input type="checkbox" id="lengua_literatura" name="asignaturas[]" value="LENGUA_LITERATURA"
+              class="clase-checkbox">
+            <label for="lengua_literatura" class="clase-label">Lengua y Literatura</label>
+
+            <input type="checkbox" id="ciencias_naturales" name="asignaturas[]" value="CIENCIAS_NATURALES"
+              class="clase-checkbox">
+            <label for="ciencias_naturales" class="clase-label">Ciencias Naturales</label>
+
+            <input type="checkbox" id="ciencias_sociales" name="asignaturas[]" value="CIENCIAS_SOCIALES"
+              class="clase-checkbox">
+            <label for="ciencias_sociales" class="clase-label">Ciencias Sociales</label>
+
+            <input type="checkbox" id="ingles" name="asignaturas[]" value="INGLES" class="clase-checkbox">
+            <label for="ingles" class="clase-label">Inglés</label>
+          </div>
+
+          <div class="seccion-title">Idiomas</div>
+          <div class="clases-container">
+            <input type="checkbox" id="frances" name="asignaturas[]" value="FRANCES" class="clase-checkbox">
+            <label for="frances" class="clase-label">Francés</label>
+          </div>
+
+          <div class="seccion-title">Educación Física y Artes</div>
+          <div class="clases-container">
+            <input type="checkbox" id="educacion_fisica" name="asignaturas[]" value="EDUCACION_FISICA"
+              class="clase-checkbox">
+            <label for="educacion_fisica" class="clase-label">Educación Física</label>
+
+            <input type="checkbox" id="arte" name="asignaturas[]" value="ARTE" class="clase-checkbox">
+            <label for="arte" class="clase-label">Arte y Cultura</label>
+
+            <input type="checkbox" id="musica" name="asignaturas[]" value="MUSICA" class="clase-checkbox">
+            <label for="musica" class="clase-label">Música</label>
+          </div>
+
+          <div class="seccion-title">Tecnología</div>
+          <div class="clases-container">
+            <input type="checkbox" id="tecnologia" name="asignaturas[]" value="TECNOLOGIA" class="clase-checkbox">
+            <label for="tecnologia" class="clase-label">Tecnología</label>
+
+            <input type="checkbox" id="informatica" name="asignaturas[]" value="INFORMATICA" class="clase-checkbox">
+            <label for="informatica" class="clase-label">Informática</label>
+          </div>
+
+          <div class="seccion-title">Filosofía y Valores</div>
+          <div class="clases-container">
+            <input type="checkbox" id="filosofia" name="asignaturas[]" value="FILOSOFIA" class="clase-checkbox">
+            <label for="filosofia" class="clase-label">Filosofía</label>
+
+            <input type="checkbox" id="etica" name="asignaturas[]" value="ETICA" class="clase-checkbox">
+            <label for="etica" class="clase-label">Ética y Valores</label>
+          </div>
+
+          <div class="seccion-title">Ciencias Específicas</div>
+          <div class="clases-container">
+            <input type="checkbox" id="historia" name="asignaturas[]" value="HISTORIA" class="clase-checkbox">
+            <label for="historia" class="clase-label">Historia</label>
+
+            <input type="checkbox" id="geografia" name="asignaturas[]" value="GEOGRAFIA" class="clase-checkbox">
+            <label for="geografia" class="clase-label">Geografía</label>
+
+            <input type="checkbox" id="biologia" name="asignaturas[]" value="BIOLOGIA" class="clase-checkbox">
+            <label for="biologia" class="clase-label">Biología</label>
+
+            <input type="checkbox" id="quimica" name="asignaturas[]" value="QUIMICA" class="clase-checkbox">
+            <label for="quimica" class="clase-label">Química</label>
+
+            <input type="checkbox" id="fisica" name="asignaturas[]" value="FISICA" class="clase-checkbox">
+            <label for="fisica" class="clase-label">Física</label>
+          </div>
+
+          <small class="help-text">Selecciona todas las asignaturas que imparte el profesor</small>
+        </div>
+      </div>
+
+      <!-- Sección: Información Académica -->
+      <div class="form-section">
+        <h3 class="section-title"><i class="fas fa-university"></i> Información Académica</h3>
+
+        <div class="form-group full-width">
+          <label for="titulos" class="required"><i class="fas fa-scroll"></i> Títulos</label>
+          <textarea id="titulos" name="titulos" placeholder="Lista de títulos académicos obtenidos (separados por coma)"
+            required></textarea>
+        </div>
+      </div>
+
+      <!-- Sección: Información Adicional -->
+      <div class="form-section">
+        <h3 class="section-title"><i class="fas fa-info-circle"></i> Información Adicional</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="turno" class="required"><i class="fas fa-sun"></i> Turno</label>
+            <select id="turno" name="turno" required>
+              <option value="">Seleccione...</option>
+              <option value="MATUTINO">Matutino</option>
+              <option value="VESPERTINO">Vespertino</option>
+              <option value="NOCTURNO">Nocturno</option>
+              <option value="MIXTO">Mixto</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha_ingreso"><i class="fas fa-calendar-alt"></i> Fecha de Ingreso</label>
+            <input type="date" id="fecha_ingreso" name="fecha_ingreso">
+          </div>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="observaciones"><i class="fas fa-sticky-note"></i> Observaciones</label>
+          <textarea id="observaciones" name="observaciones" placeholder="Observaciones adicionales sobre el profesor..."
+            rows="4"></textarea>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar Profesor</button>
+        <a href="/secretaria" class="btn-cancelar"><i class="fa-solid fa-xmark"></i> Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
+  <script>
+    // Auto-completar especialidad basada en asignaturas seleccionadas
+    function actualizarEspecialidad() {
+      const asignaturasSeleccionadas = document.querySelectorAll('input[name="asignaturas[]"]:checked');
+      const especialidadInput = document.getElementById('especialidad');
+
+      if (asignaturasSeleccionadas.length > 0 && !especialidadInput.value) {
+        const asignaturasNombres = Array.from(asignaturasSeleccionadas).map(checkbox => {
+          const label = document.querySelector(`label[for="${checkbox.id}"]`);
+          return label ? label.textContent : '';
+        }).filter(nombre => nombre !== '');
+
+        if (asignaturasNombres.length > 0) {
+          if (asignaturasNombres.length === 1) {
+            especialidadInput.value = asignaturasNombres[0];
+          } else {
+            especialidadInput.value = asignaturasNombres[0] + ' y otras';
+          }
+        }
+      }
+    }
+
+    // Agregar event listeners a los checkboxes de asignaturas
+    document.addEventListener('DOMContentLoaded', function () {
+      const checkboxesAsignaturas = document.querySelectorAll('input[name="asignaturas[]"]');
+      checkboxesAsignaturas.forEach(checkbox => {
+        checkbox.addEventListener('change', actualizarEspecialidad);
+      });
+    });
+
+    // Actualizar la validación para checkboxes de asignaturas
+    function validarAsignaturas() {
+      const asignaturasSeleccionadas = document.querySelectorAll('input[name="asignaturas[]"]:checked');
+
+      if (asignaturasSeleccionadas.length === 0) {
+        mostrarNotificacion('Debe seleccionar al menos una asignatura', 'error');
+
+        // Resaltar la sección de asignaturas
+        const seccionAsignaturas = document.querySelector('.form-section:nth-child(4)');
+        seccionAsignaturas.style.borderColor = '#e74c3c';
+        seccionAsignaturas.style.backgroundColor = '#fee';
+
+        setTimeout(() => {
+          seccionAsignaturas.style.borderColor = '#eaeaea';
+          seccionAsignaturas.style.backgroundColor = '';
+        }, 3000);
+
+        return false;
+      }
+
+      return true;
+    }
+
+    // Modificar la función de validación del formulario
+    function validarFormulario() {
+      const requiredFields = document.querySelectorAll('[required]');
+      let isValid = true;
+
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          field.style.borderColor = '#e74c3c';
+          isValid = false;
+
+          // Restaurar color después de un tiempo
+          setTimeout(() => {
+            field.style.borderColor = '#e0e0e0';
+          }, 3000);
+        }
+      });
+
+      // Validar cédula
+      const cedula = document.getElementById('cedula').value;
+      if (cedula && !validarCedula(cedula)) {
+        mostrarNotificacion('El formato de la cédula no es válido. Use: 000-000000-0000X', 'error');
+        document.getElementById('cedula').style.borderColor = '#e74c3c';
+        isValid = false;
+      }
+
+      // Validar clases
+      const clasesSeleccionadas = document.querySelectorAll('input[name="clases[]"]:checked');
+      if (clasesSeleccionadas.length === 0) {
+        mostrarNotificacion('Debe seleccionar al menos una clase', 'error');
+        isValid = false;
+      }
+
+      // Validar asignaturas (nueva validación)
+      if (!validarAsignaturas()) {
+        isValid = false;
+      }
+
+      // Validar carga horaria
+      const carga = document.getElementById('carga').value;
+      if (carga && (carga < 1 || carga > 48)) {
+        mostrarNotificacion('La carga horaria debe estar entre 1 y 48 horas', 'error');
+        document.getElementById('carga').style.borderColor = '#e74c3c';
+        isValid = false;
+      }
+
+      if (!isValid) {
+        mostrarNotificacion('Por favor complete todos los campos requeridos correctamente', 'error');
+      }
+
+      return isValid;
+    }
+    document.getElementById('formAgregarProfesor').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Validar formulario
+      if (validarFormulario()) {
+        // Simular envío exitoso
+        mostrarNotificacion('Profesor agregado correctamente', 'success');
+
+        // En un caso real, aquí enviarías el formulario
+        // this.submit();
+
+        // Limpiar formulario después de 2 segundos (solo para demo)
+        setTimeout(() => {
+          this.reset();
+          // Restablecer fecha actual
+          const hoy = new Date();
+          const fechaFormateada = hoy.toISOString().split('T')[0];
+          document.getElementById('fecha_ingreso').value = fechaFormateada;
+        }, 2000);
+      }
+    });
+
+    function validarFormulario() {
+      const requiredFields = document.querySelectorAll('[required]');
+      let isValid = true;
+
+      requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+          field.style.borderColor = '#e74c3c';
+          isValid = false;
+
+          // Restaurar color después de un tiempo
+          setTimeout(() => {
+            field.style.borderColor = '#e0e0e0';
+          }, 3000);
+        }
+      });
+
+      // Validar cédula (formato corregido que permite letras)
+      const cedula = document.getElementById('cedula').value;
+      if (cedula && !validarCedula(cedula)) {
+        mostrarNotificacion('El formato de la cédula no es válido. Use: 000-000000-0000X', 'error');
+        document.getElementById('cedula').style.borderColor = '#e74c3c';
+        isValid = false;
+      }
+
+      // Validar que se haya seleccionado al menos una clase
+      const clasesSeleccionadas = document.querySelectorAll('input[name="clases[]"]:checked');
+      if (clasesSeleccionadas.length === 0) {
+        mostrarNotificacion('Debe seleccionar al menos una clase', 'error');
+        isValid = false;
+      }
+
+      // Validar que se haya seleccionado al menos una asignatura
+      const asignaturasSeleccionadas = Array.from(document.getElementById('asignaturas_multiple').selectedOptions);
+      if (asignaturasSeleccionadas.length === 0) {
+        mostrarNotificacion('Debe seleccionar al menos una asignatura', 'error');
+        document.getElementById('asignaturas_multiple').style.borderColor = '#e74c3c';
+        isValid = false;
+      }
+
+      // Validar carga horaria
+      const carga = document.getElementById('carga').value;
+      if (carga && (carga < 1 || carga > 48)) {
+        mostrarNotificacion('La carga horaria debe estar entre 1 y 48 horas', 'error');
+        document.getElementById('carga').style.borderColor = '#e74c3c';
+        isValid = false;
+      }
+
+      if (!isValid) {
+        mostrarNotificacion('Por favor complete todos los campos requeridos correctamente', 'error');
+      }
+
+      return isValid;
+    }
+
+    function validarCedula(cedula) {
+      // Expresión regular corregida que permite letras al final
+      const regex = /^\d{3}-\d{6}-\d{4}[A-Za-z]$/;
+      return regex.test(cedula);
+    }
+
+    function mostrarNotificacion(mensaje, tipo) {
+      const notification = document.getElementById('notification');
+      notification.textContent = mensaje;
+      notification.className = `notification ${tipo} show`;
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 5000);
+    }
+
+    // Formatear cédula automáticamente (versión corregida)
+    document.getElementById('cedula').addEventListener('input', function (e) {
+      let value = e.target.value.replace(/[^0-9A-Za-z]/g, '');
+
+      if (value.length > 3 && value.length <= 9) {
+        value = value.substring(0, 3) + '-' + value.substring(3, 9);
+      } else if (value.length > 9) {
+        // Permitir letra al final
+        const parteNumerica = value.substring(0, 13);
+        const letraFinal = value.length > 13 ? value.substring(13, 14) : '';
+        value = parteNumerica.substring(0, 3) + '-' + parteNumerica.substring(3, 9) + '-' + parteNumerica.substring(9, 13) + letraFinal;
+      }
+
+      e.target.value = value;
+    });
+
+    // Establecer fecha actual como fecha de ingreso por defecto
+    document.addEventListener('DOMContentLoaded', function () {
+      const fechaIngreso = document.getElementById('fecha_ingreso');
+      if (fechaIngreso && !fechaIngreso.value) {
+        const hoy = new Date();
+        const fechaFormateada = hoy.toISOString().split('T')[0];
+        fechaIngreso.value = fechaFormateada;
+      }
+    });
+
+    // Auto-completar especialidad basada en asignatura seleccionada
+    document.getElementById('asignaturas_multiple').addEventListener('change', function () {
+      const asignaturasSeleccionadas = Array.from(this.selectedOptions);
+      const especialidadInput = document.getElementById('especialidad');
+
+      if (asignaturasSeleccionadas.length > 0 && !especialidadInput.value) {
+        // Tomar la primera asignatura como especialidad principal
+        const primeraAsignatura = asignaturasSeleccionadas[0].textContent;
+        especialidadInput.value = primeraAsignatura;
+
+        // Si hay más de una asignatura, agregar "y otras"
+        if (asignaturasSeleccionadas.length > 1) {
+          especialidadInput.value += ' y otras';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

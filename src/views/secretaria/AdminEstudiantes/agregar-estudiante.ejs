@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Estudiantes</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+            transform: translateY(-2px);
+        }
+
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        .form-hint {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Sistema de Registro de Estudiantes</h1>
+            <p>Complete toda la información requerida para el registro académico</p>
+        </div>
+
+        <div class="form-container">
+            <form id="estudianteForm" method="POST" action="/secretaria/agregar-estudiante">
+                <!-- Sección: Información Académica -->
+                <div class="section">
+                    <h2 class="section-title">🏫 Información Académica</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="grado" class="required">Grado</label>
+                            <select id="grado" name="grado" required>
+                                <option value="">Seleccione el grado</option>
+                                <option value="Pre-25">Pre-25</option>
+                                <option value="Pre-26">Pre-26</option>
+                                <option value="1ro">1ro</option>
+                                <option value="2do">2do</option>
+                                <option value="3ro">3ro</option>
+                                <option value="4to">4to</option>
+                                <option value="5to">5to</option>
+                                <option value="6to">6to</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="seccion" class="required">Sección</label>
+                            <select id="seccion" name="seccion" required>
+                                <option value="">Seleccione la sección</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="no_estudiante" class="required">No. de Estudiante</label>
+                            <input type="number" id="no_estudiante" name="no_estudiante" required min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="codigo_estudiante" class="required">Código de Estudiante</label>
+                            <input type="text" id="codigo_estudiante" name="codigo_estudiante" required 
+                                   placeholder="Ej: ADGA 070419.6909017">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Información Personal del Estudiante -->
+                <div class="section">
+                    <h2 class="section-title">👤 Información Personal del Estudiante</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="primer_nombre" class="required">Primer Nombre</label>
+                            <input type="text" id="primer_nombre" name="primer_nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="segundo_nombre">Segundo Nombre</label>
+                            <input type="text" id="segundo_nombre" name="segundo_nombre">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="primer_apellido" class="required">Primer Apellido</label>
+                            <input type="text" id="primer_apellido" name="primer_apellido" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="segundo_apellido">Segundo Apellido</label>
+                            <input type="text" id="segundo_apellido" name="segundo_apellido">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fecha_nacimiento" class="required">Fecha de Nacimiento</label>
+                            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nacionalidad" class="required">Nacionalidad</label>
+                            <input type="text" id="nacionalidad" name="nacionalidad" required value="Nicaragüense">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sexo" class="required">Sexo</label>
+                            <select id="sexo" name="sexo" required>
+                                <option value="">Seleccione</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="peso">Peso (kg)</label>
+                            <input type="number" id="peso" name="peso" step="0.1" min="0" max="100">
+                            <div class="form-hint">Ej: 50.5</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="talla">Talla (cm)</label>
+                            <input type="number" id="talla" name="talla" step="0.1" min="0" max="200">
+                            <div class="form-hint">Ej: 110.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Información de Salud y Domicilio -->
+                <div class="section">
+                    <h2 class="section-title">🏥 Información de Salud y Domicilio</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="diagnostico_salud">Diagnóstico de Salud</label>
+                            <input type="text" id="diagnostico_salud" name="diagnostico_salud" value="NINGUNA">
+                            <div class="form-hint">Dejar como "NINGUNA" si no aplica</div>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label for="domicilio" class="required">Domicilio Completo</label>
+                            <textarea id="domicilio" name="domicilio" required rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Información del Responsable -->
+                <div class="section">
+                    <h2 class="section-title">👨‍👩‍👧‍👦 Información del Responsable</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="primer_nombre_responsable" class="required">Primer Nombre</label>
+                            <input type="text" id="primer_nombre_responsable" name="primer_nombre_responsable" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="segundo_nombre_responsable">Segundo Nombre</label>
+                            <input type="text" id="segundo_nombre_responsable" name="segundo_nombre_responsable">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="primer_apellido_responsable" class="required">Primer Apellido</label>
+                            <input type="text" id="primer_apellido_responsable" name="primer_apellido_responsable" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="segundo_apellido_responsable">Segundo Apellido</label>
+                            <input type="text" id="segundo_apellido_responsable" name="segundo_apellido_responsable">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fecha_nacimiento_responsable" class="required">Fecha de Nacimiento</label>
+                            <input type="date" id="fecha_nacimiento_responsable" name="fecha_nacimiento_responsable" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nacionalidad_responsable" class="required">Nacionalidad</label>
+                            <input type="text" id="nacionalidad_responsable" name="nacionalidad_responsable" required value="NICARAGUENSE">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipo_documento" class="required">Tipo de Documento</label>
+                            <select id="tipo_documento" name="tipo_documento" required>
+                                <option value="">Seleccione</option>
+                                <option value="CEDULA">Cédula</option>
+                                <option value="PASAPORTE">Pasaporte</option>
+                                <option value="DNI">DNI</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numero_documento" class="required">Número del Documento</label>
+                            <input type="text" id="numero_documento" name="numero_documento" required 
+                                   placeholder="Ej: 001-050294-0029 M">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="celular" class="required">Celular</label>
+                            <input type="tel" id="celular" name="celular" required 
+                                   placeholder="Ej: 8785 06 01">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección: Información Adicional -->
+                <div class="section">
+                    <h2 class="section-title">📋 Información Adicional</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="hermanos_colegio">Hermanos en el Colegio</label>
+                            <textarea id="hermanos_colegio" name="hermanos_colegio" rows="3" 
+                                      placeholder="Ej: ABISAI ANTONIO GONZALEZ ABEL 2DO GRADO"></textarea>
+                            <div class="form-hint">Nombres y grados de hermanos, separados por coma</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="religion" class="required">Religión</label>
+                            <select id="religion" name="religion" required>
+                                <option value="">Seleccione</option>
+                                <option value="CATÓLICO">Católico</option>
+                                <option value="EVANGÉLICO">Evangélico</option>
+                                <option value="CRISTIANO">Cristiano</option>
+                                <option value="OTRA">Otra</option>
+                                <option value="NINGUNA">Ninguna</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label for="observacion">Observaciones</label>
+                            <textarea id="observacion" name="observacion" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">
+                        💾 Guardar Estudiante
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        🗑️ Limpiar Formulario
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('estudianteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validaciones adicionales
+            const codigoEstudiante = document.getElementById('codigo_estudiante').value;
+            const numeroDocumento = document.getElementById('numero_documento').value;
+            
+            if (!codigoEstudiante.trim()) {
+                alert('El código de estudiante es requerido');
+                return;
+            }
+            
+            if (!numeroDocumento.trim()) {
+                alert('El número de documento es requerido');
+                return;
+            }
+            
+            // Simular envío exitoso
+            alert('✅ Estudiante registrado exitosamente!\n\nLos datos están listos para ser guardados en la base de datos.');
+            
+            // Aquí puedes agregar la lógica para enviar a tu backend
+            // const formData = new FormData(this);
+            // fetch('/guardar-estudiante', { method: 'POST', body: formData })
+            // .then(response => response.json())
+            // .then(data => console.log(data));
+        });
+
+        // Auto-completar fecha de nacimiento responsable (ejemplo: mayor de 18 años)
+        document.getElementById('fecha_nacimiento_responsable').addEventListener('focus', function() {
+            if (!this.value) {
+                const today = new Date();
+                const minDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+                this.valueAsDate = minDate;
+            }
+        });
+
+        // Validación en tiempo real para campos numéricos
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value && this.value < 0) {
+                    this.value = '';
+                    alert('El valor no puede ser negativo');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

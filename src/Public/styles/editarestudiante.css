@@ -1,0 +1,224 @@
+/* 🎨 Paleta y estilos base */
+:root {
+  --primary: #88ccf1;
+  --primary-dark: #4b93d5;
+  --secondary: #0382ac;
+  --accent: #56cfe1;
+  --danger: #d54b4b;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+  --border-radius: 16px;
+  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 🌈 Fondo general */
+body {
+  background: radial-gradient(circle at top left, #88ccf1 0%, #4b93d5 100%);
+  color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+
+/* 📋 Contenedor del formulario */
+.form-container {
+  width: 100%;
+  max-width: 950px;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* 🌟 Encabezado */
+.form-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-header i {
+  font-size: 1.4rem;
+}
+
+.form-header p {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* 🧩 Cuerpo del formulario */
+.form-content {
+  padding: 35px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+/* 🏷️ Grupos de entrada */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.form-group i {
+  color: var(--secondary);
+  margin-right: 6px;
+}
+
+/* ✏️ Campos */
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--light-gray);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: #fdfdfd;
+}
+
+.form-control:focus {
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 3px rgba(76, 133, 232, 0.2);
+  outline: none;
+}
+
+.readonly-field {
+  background: #f3f4f6;
+  cursor: not-allowed;
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* 🧭 Acciones */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--light-gray);
+}
+
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn i {
+  font-size: 1rem;
+}
+
+/* 💙 Botones de acción */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--light-gray);
+  color: var(--dark);
+}
+
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #b73939;
+  transform: translateY(-2px);
+}
+
+/* 🔴 Campo requerido */
+.required::after {
+  content: " *";
+  color: var(--danger);
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* nimación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Sistema Académico CEO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- RUTA CORREGIDA -->
+    <link rel="stylesheet" href="/styles/login.css">
+    <script src="/js/login.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">
+                <div class="logo-img">
+                    <!-- RUTA CORREGIDA -->
+                    <img src="/img/Logo-CEO.webp" alt="Logo Colegio Enrique de Ossó">
+                </div>
+                <div class="logo-text" style="letter-spacing: 20px; color:white">GESTIÓN ESCOLAR</div>
+            </div>
+        </header>
+
+        <!-- MAIN -->
+        <main>
+            <div class="login-section">
+                <div class="login-card">
+                    <!-- Sección de bienvenida -->
+                    <div class="welcome-section">
+                        <div class="welcome-header"
+                            style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+                            <div>
+                                <div class="ceo-text">Sistema Académico CEO</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solo botón de Google -->
+                    <div class="login-form active">
+                        <div class="social-login" style="margin-top: 30px;">
+                            <a href="/auth/google" class="google-btn">
+                                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google">
+                                <span>Continuar con Google</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="login-footer">
+                        <p>¿Necesitas ayuda? <a href="#">Contacta al administrador</a></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>Desarrollado por el equipo de Ingeniería de Sistemas - 2025</p>
+        </footer>
+    </div>
+
+    <!-- Script para prevenir cache y volver atrás -->
+    <script>
+        // Prevenir que el usuario pueda volver atrás después de logout
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = function() {
+            window.history.go(1);
+        };
+
+        // Limpiar cualquier dato residual
+        localStorage.clear();
+        sessionStorage.clear();
+    </script>
+</body>
+
+</html>

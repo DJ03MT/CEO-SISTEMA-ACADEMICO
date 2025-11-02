@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Profesor</title>
+  <link rel="stylesheet" href="/styles/editarprofesor.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Editar Información del Profesor</h2>
+
+    <div class="info-centro">
+      <p><strong>Código del Centro:</strong> 21824</p>
+      <p><strong>Dirección del Centro:</strong> Terminal de Ruta 108-109, 2C al Este</p>
+      <p><strong>Área:</strong> Rural</p>
+      <p><strong>Municipio:</strong> Managua, D-5</p>
+      <p><strong>No. Alumnos:</strong> 1,339</p>
+    </div>
+
+    <form action="/profesores/editar/<%= profesor.id %>" method="POST">
+      <div class="form-group">
+        <label for="cedula">Cédula de Identidad</label>
+        <input type="text" id="cedula" name="cedula" value="<%= profesor.cedula %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="nombre">Nombres y Apellidos</label>
+        <input type="text" id="nombre" name="nombre" value="<%= profesor.nombre %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="cargo">Cargo Real</label>
+        <select id="cargo" name="cargo" required>
+          <option <%= profesor.cargo === '' ? 'selected' : '' %> value="">Seleccione...</option>
+          <option <%= profesor.cargo === 'Maestro de Educación Preescolar' ? 'selected' : '' %>>Maestro de Educación Preescolar</option>
+          <option <%= profesor.cargo === 'Maestro de Educación Primaria' ? 'selected' : '' %>>Maestro de Educación Primaria</option>
+          <option <%= profesor.cargo === 'Maestro de Educación Media - Secundaria' ? 'selected' : '' %>>Maestro de Educación Media - Secundaria</option>
+          <option <%= profesor.cargo === 'Jefe de Área A' ? 'selected' : '' %>>Jefe de Área A</option>
+          <option <%= profesor.cargo === 'Sub Director A' ? 'selected' : '' %>>Sub Director A</option>
+          <option <%= profesor.cargo === 'Director A' ? 'selected' : '' %>>Director A</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="asignatura">Asignatura a Impartir</label>
+        <input type="text" id="asignatura" name="asignatura" value="<%= profesor.asignatura %>">
+      </div>
+
+      <div class="form-group">
+        <label for="especialidad">Especialidad del Docente</label>
+        <input type="text" id="especialidad" name="especialidad" value="<%= profesor.especialidad %>">
+      </div>
+
+      <div class="form-group">
+        <label for="carga">Carga Horaria</label>
+        <input type="number" id="carga" name="carga" value="<%= profesor.carga %>">
+      </div>
+
+      <div class="form-group">
+        <label for="grado">Grado</label>
+        <input type="text" id="grado" name="grado" value="<%= profesor.grado %>">
+      </div>
+
+      <div class="form-group">
+        <label for="estudiantes">Nº de Estudiantes</label>
+        <input type="number" id="estudiantes" name="estudiantes" value="<%= profesor.estudiantes %>">
+      </div>
+
+      <div class="form-group">
+        <label for="titulos">Títulos</label>
+        <input type="text" id="titulos" name="titulos" value="<%= profesor.titulos %>">
+      </div>
+
+      <div class="form-group">
+        <label for="turno">Turno</label>
+        <select id="turno" name="turno">
+          <option <%= profesor.turno === '' ? 'selected' : '' %> value="">Seleccione...</option>
+          <option <%= profesor.turno === 'Matutino' ? 'selected' : '' %>>Matutino</option>
+          <option <%= profesor.turno === 'Vespertino' ? 'selected' : '' %>>Vespertino</option>
+          <option <%= profesor.turno === 'Nocturno' ? 'selected' : '' %>>Nocturno</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="observaciones">Observaciones</label>
+        <textarea id="observaciones" name="observaciones" rows="3"><%= profesor.observaciones %></textarea>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn-guardar"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+        <a href="/secretaria" class="btn-cancelar"><i class="fa-solid fa-xmark"></i> Cancelar</a>
+        <a href="/profesores/eliminar/<%= profesor.id %>" class="btn-eliminar"><i class="fa-solid fa-trash"></i> Eliminar</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

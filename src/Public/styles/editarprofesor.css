@@ -1,0 +1,191 @@
+/* === Variables globales y reset === */
+:root {
+  --primary: #88ccf1;
+  --primary-dark: #4b93d5;
+  --secondary: #0382ac;
+  --success: #88ccf1;
+  --danger: #d54b4b;
+  --warning: #d5a34b;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+  --border-radius: 16px;
+  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* === Fondo y contenedor principal === */
+body {
+  background: linear-gradient(135deg, #88ccf1 0%, #4b93d5 100%);
+  color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* === Contenedor del formulario === */
+.container {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 30px;
+}
+
+/* === Título principal === */
+.container h2 {
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 25px;
+}
+
+/* === Información del centro educativo === */
+.info-centro {
+  background: var(--light-gray);
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.info-centro p {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+/* === Campos del formulario === */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--dark);
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+/* === Área de texto === */
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* === Grupo de botones === */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--light-gray);
+}
+
+/* === Botones === */
+.btn-guardar,
+.btn-cancelar,
+.btn-eliminar {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btn-guardar i,
+.btn-cancelar i,
+.btn-eliminar i {
+  margin-right: 8px;
+}
+
+/* Estilos específicos */
+.btn-guardar {
+  background: var(--primary);
+  color: white;
+}
+.btn-guardar:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-cancelar {
+  background: var(--light-gray);
+  color: var(--dark);
+}
+.btn-cancelar:hover {
+  background: #d1d5db;
+}
+
+.btn-eliminar {
+  background: var(--danger);
+  color: white;
+}
+.btn-eliminar:hover {
+  background: #b93838;
+  transform: translateY(-2px);
+}
+
+/* === Responsivo === */
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+  }
+  .btn-guardar,
+  .btn-cancelar,
+  .btn-eliminar {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* nimación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
